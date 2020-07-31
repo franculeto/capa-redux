@@ -65,6 +65,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
       logOnly: environment.production
     }),
     StoreRouterConnectingModule.forRoot(),
+    
 
   ],
   // providers: [

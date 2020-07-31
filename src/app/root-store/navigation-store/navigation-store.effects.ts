@@ -33,25 +33,13 @@ export class NavigationStoreEffects {
     })
   );
 
-  @Effect({ dispatch: false })
-  public routerNavigated$ = this.actions$.pipe(
-    ofType(ROUTER_NAVIGATED),
-    map((action: any) => {
-      let url = action.payload.routerState.url;
-      const urlIndexParam = url.indexOf('?');
-      url = urlIndexParam > 0 ? url.substring(0, urlIndexParam) : url;
-      return this.storeNavigation$.dispatch(new AddToHistory({ url: String(action.payload.routerState.url) }));
-    }),
-  );
-
   @Effect({ dispatch: false }) navigateBack$ = this.actions$.pipe(
     ofType(NavigationStoreActionsTypes.NAVIGATE_BACK),
     switchMap(() => this.storeNavigation$.pipe(
       select(fromNavigationStore.selectActualPageUrl),
       take(1),
       tap(url => {
-        this.router.navigate([url])
-
+        this.router.navigate([url]);
       }
       ))
     ));

@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -22,7 +21,23 @@
   </li>
 </ul>
 
+<button (click)="savePersonalData()">
+  Guardar datos personales
+</button>
 
 <button (click)="goToPersonalData()">
- Ir a ver a Datos personales
+  Ir a ver a datos personales
 </button>
+
+<button (click)="dispatchFetchPendingCourses()">
+  Buscar cursos
+</button>
+
+
+ 
+<ul *ngIf="coursesList && coursesList.length" style="list-style-type:none;">
+  Cursos
+  <p *ngFor="let course of coursesList">
+    {{course}}
+  </p>
+</ul>
